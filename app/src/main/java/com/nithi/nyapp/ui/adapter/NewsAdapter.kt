@@ -27,8 +27,11 @@ class NewsAdapter(val click:(com.nithi.nyapp.model.Result)->Unit) : RecyclerView
         fun bindData(click: (com.nithi.nyapp.model.Result) -> Unit, result: com.nithi.nyapp.model.Result) {
             binding.heading.text=result.title
             binding.date.text=result.published_date
-            val imageUrl=result.media[0].media[2].url
-            binding.image.load(imageUrl)
+            if (result.media.isNotEmpty()){
+                val imageUrl=result.media[0].media[2].url
+                binding.image.load(imageUrl)
+            }
+
 
             binding.itemContraint.setOnClickListener {
                 click(result)
